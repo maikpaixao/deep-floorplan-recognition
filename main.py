@@ -3,7 +3,7 @@ from net import *
 import warnings
 warnings.filterwarnings('ignore')
 
-os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
+os.environ['CUDA_VISIBLE_DEVICES'] = '0'
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
@@ -117,7 +117,7 @@ class MODEL(Network):
 		# define session
 		#config = tf.ConfigProto(allow_soft_placement=True) 
 		config = tf.ConfigProto() 
-		#config.gpu_options.allow_growth=True # prevent the program occupies all GPU memory
+		config.gpu_options.allow_growth=True # prevent the program occupies all GPU memory
 		with tf.Session(config=config) as sess:
 			# init all variables in graph
 			sess.run(tf.group(tf.global_variables_initializer(),

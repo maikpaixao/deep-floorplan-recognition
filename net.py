@@ -72,7 +72,7 @@ class Network(object):
 		s = np.sqrt(1. /fan_in)
 
 		# create variable and specific GPU device
-		with tf.device('/device:CPU:'+GPU_ID):
+		with tf.device('/device:GPU:'+GPU_ID):
 			w = tf.get_variable(name, shape, dtype=self.dtype,
 							initializer=tf.random_uniform_initializer(minval=-s, maxval=s),
 							regularizer=regularizer, trainable=trainable)
@@ -82,7 +82,7 @@ class Network(object):
 	def _constant(self, shape, value=0, regularizer=None, trainable=None, name=None):
 		name = 'b' if name is None else name+'/b'
 
-		with tf.device('/device:CPU:'+GPU_ID):
+		with tf.device('/device:GPU:'+GPU_ID):
 			b = tf.get_variable(name, shape, dtype=self.dtype,
 							initializer=tf.constant_initializer(value=value),
 							regularizer=regularizer, trainable=trainable)
@@ -123,7 +123,7 @@ class Network(object):
 			x = (x - mean) / tf.sqrt(var + 1e-6)
 
 			# per channel gamma and beta
-			with tf.device('/device:CPU:'+GPU_ID):
+			with tf.device('/device:GPU:'+GPU_ID):
 				gamma = tf.get_variable(name+'/gamma', [C], dtype=self.dtype, initializer=tf.constant_initializer(1.0))
 				beta = tf.get_variable(name+'/beta', [C], dtype=self.dtype, initializer=tf.constant_initializer(0.0))
 				gamma = tf.reshape(gamma, [1, C, 1, 1])
@@ -183,7 +183,7 @@ class Network(object):
 	def _constant_kernel(self, shape, value=1.0, diag=False, flip=False, regularizer=None, trainable=None, name=None):
 		name = 'fixed_w' if name is None else name+'/fixed_w'
 
-		with tf.device('/device:CPU:'+GPU_ID):
+		with tf.device('/device:GPU:'+GPU_ID):
 			if not diag:
 				k = tf.get_variable(name, shape, dtype=self.dtype,
 						initializer=tf.constant_initializer(value=value),
