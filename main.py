@@ -184,7 +184,7 @@ class MODEL(Network):
 		rooms = self.convert_one_hot_to_image(logits1, act='softmax', dtype='int')
 		close_walls = self.convert_one_hot_to_image(logits2, act='softmax', dtype='int')
 
-		config = tf.ConfigProto()
+		config = tf.ConfigProto(allow_soft_placement=True)
 		sess = tf.Session(config=config)
 		sess.run(tf.group(tf.global_variables_initializer(),
 						tf.local_variables_initializer()))
