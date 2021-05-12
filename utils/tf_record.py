@@ -348,7 +348,7 @@ def read_bd_rm_record(data_path, batch_size=1, size=512):
 
 	# Creates batches by randomly shuffling tensors
 	images, label_boundaries, label_rooms, label_doors = tf.train.shuffle_batch([image, label_boundary, label_room, door], 
-						batch_size=batch_size, capacity=batch_size*128, min_after_dequeue=batch_size*32)	
+						batch_size=batch_size, capacity=batch_size*64, min_after_dequeue=batch_size*16)	
 
 	# images, walls = tf.train.shuffle_batch([image, wall], 
 						# batch_size=batch_size, capacity=batch_size*128, num_threads=1, min_after_dequeue=batch_size*32)	
