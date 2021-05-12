@@ -115,8 +115,8 @@ class MODEL(Network):
 		# tf.summary.scalar('bce', loss)
 
 		# define session
-		#config = tf.ConfigProto(allow_soft_placement=True) 
-		config = tf.ConfigProto() 
+		config = tf.ConfigProto(allow_soft_placement=True) 
+		#config = tf.ConfigProto() 
 		config.gpu_options.allow_growth=True # prevent the program occupies all GPU memory
 		with tf.Session(config=config) as sess:
 			# init all variables in graph
