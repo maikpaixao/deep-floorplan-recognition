@@ -5,6 +5,7 @@ import tensorflow as tf
 
 from scipy.misc import imread, imsave, imresize
 from matplotlib import pyplot as plt
+%matplotlib inline
 
 #os.environ['CUDA_VISIBLE_DEVICES'] = '0'
 
