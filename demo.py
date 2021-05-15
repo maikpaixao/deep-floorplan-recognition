@@ -70,7 +70,7 @@ def main(args):
 		room_type, room_boundary = np.squeeze(room_type), np.squeeze(room_boundary)
 
 		# merge results
-		floorplan = room_type.copy()
+		#floorplan = room_type.copy()
 		floorplan[room_boundary==1] = 9
 		floorplan[room_boundary==2] = 10
 		floorplan_rgb = ind2rgb(floorplan)
