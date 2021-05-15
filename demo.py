@@ -76,8 +76,8 @@ def main(args):
 		floorplan_rgb = ind2rgb(floorplan)
 
 		# plot results
-		plt.subplot(121)
-		plt.imshow(im)
+		#plt.subplot(121)
+		#plt.imshow(im)
 		plt.subplot(122)
 		plt.imshow(floorplan_rgb/255.)
 		#plt.show()
