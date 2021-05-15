@@ -294,14 +294,7 @@ def main():
 	random.seed(seed)
 
 	model = MODEL()
-	loader_dict, num_batch = data_loader_bd_rm_from_tfrecord(batch_size=1)
-
-	# START TRAINING
-	tic = time.time()
-	model.train(loader_dict, num_batch)
-	toc = time.time()
-	print('total training + evaluation time = {} minutes'.format((toc-tic)/60))
-
+	model.infer()
 	'''
 	if args.phase.lower() == 'train':
 		loader_dict, num_batch = data_loader_bd_rm_from_tfrecord(batch_size=1)
