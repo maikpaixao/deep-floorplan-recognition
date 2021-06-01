@@ -80,8 +80,8 @@ def main(args):
 		#plt.imshow(im)
 		#plt.subplot(122)
 		#plt.imshow(floorplan_rgb/255.)
-		plt.imshow(room_type)
-		plt.show()
+		plt.imshow(room_type/255.)
+		#plt.show()
 		
 		plt.savefig('result.jpg')
 
