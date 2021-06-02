@@ -119,9 +119,9 @@ def main(args):
 		#plt.show()
 		
 		#plt.savefig('result.jpg')
-		saveImage2(room_type, 'room_type.png')
-		saveImage2(room_boundary, 'room_boundary.png')
-		#saveImage(room_boundary, 'room_boundary.png', door=True)
+		saveImage(room_type, 'room_type.png')
+		#saveImage2(room_boundary, 'room_boundary.png')
+		saveImage(room_boundary, 'room_boundary.png', door=True)
 
 if __name__ == '__main__':
 	FLAGS, unparsed = parser.parse_known_args()
