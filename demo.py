@@ -48,14 +48,6 @@ def ind2rgb(ind_im, color_map=floorplan_map):
 	return rgb_im
 
 def saveImage(image, path, door=False):
-	bgr = image[:,:,:3] # Channels 0..2
-	gray = cv2.cvtColor(bgr, cv2.COLOR_BGR2GRAY)
-	
-	bgr = cv2.cvtColor(gray, cv2.COLOR_GRAY2BGR)
-	alpha = image[:,:,3] # Channel 3
-	
-	image = np.dstack([bgr, alpha]) # Add the alpha channel
-	
 	floorplan = image.copy()
 	if door==True:
 		floorplan[image==1] = 9
@@ -64,7 +56,8 @@ def saveImage(image, path, door=False):
 	else:
 		image = ind2rgb(floorplan)
 	#image = cv2.cvtColor(image, cv2.COLOR_BGRA2BGR)
-	cv2.imwrite(path, floorplan/255.)
+	#cv2.imwrite(path, floorplan/255.)
+	cv2.imwrite(path, floorplan)
 
 def main(args):
 	# load input
