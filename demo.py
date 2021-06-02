@@ -57,7 +57,7 @@ def saveImage(image, path, door=False):
 	else:
 		image = ind2rgb(floorplan)
 	#image = cv2.cvtColor(image, cv2.COLOR_BGRA2BGR)
-	cv2.imwrite(path, image, [int(cv2.IMWRITE_PNG_COMPRESSION), 9])
+	cv2.imwrite(path, image/255.)
 
 def main(args):
 	# load input
@@ -108,9 +108,8 @@ def main(args):
 		#plt.savefig('result.jpg')
 		#cv2.imwrite('room_type.jpg', room_type/255.)
 		#cv2.imwrite('room_boundary.jpg', room_boundary/255.)
-		saveImage2(room_type, 'room_type.png')
-		saveImage2(room_boundary, 'room_boundary.png')
-		#saveImage(room_boundary, 'room_boundary.png', door=True)
+		saveImage(room_type, 'room_type.png')
+		saveImage(room_boundary, 'room_boundary.png', door=True)
 
 if __name__ == '__main__':
 	FLAGS, unparsed = parser.parse_known_args()
