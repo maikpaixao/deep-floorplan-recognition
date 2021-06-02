@@ -40,18 +40,14 @@ def ind2rgb(ind_im, color_map=floorplan_map):
 
 	return rgb_im
 
-def saveImage(image, path):
-	#grayImage = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-	#ret, thresh = cv2.threshold(image/255., 127, 255, cv2.THRESH_BINARY)
-	floorplan = image.copy()
-	floorplan[image==1] = 9
-	floorplan[image==2] = 10
-	image = ind2rgb(floorplan)
-	#plt.gca().set_axis_off()
-	#plt.margins(0,0)
-	#plt.autoscale(tight=True)
-	#plt.imshow(image/255., frameon=False)
-	#plt.savefig(path)
+def saveImage(image, path, door=False):
+	if door==True:
+		floorplan = image.copy()
+		floorplan[image==1] = 9
+		floorplan[image==2] = 10
+		image = ind2rgb(floorplan)
+	else:
+		image = ind2rgb(floorplan)
 	cv2.imwrite(path, image)
 
 def main(args):
@@ -104,7 +100,7 @@ def main(args):
 		#cv2.imwrite('room_type.jpg', room_type/255.)
 		#cv2.imwrite('room_boundary.jpg', room_boundary/255.)
 		saveImage(room_type, 'room_type.jpg')
-		saveImage(room_boundary, 'room_boundary.jpg')
+		saveImage(room_boundary, 'room_boundary.jpg', door=True)
 
 if __name__ == '__main__':
 	FLAGS, unparsed = parser.parse_known_args()
