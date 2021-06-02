@@ -44,7 +44,6 @@ def saveImage(image, path):
 	plt.gca().set_axis_off()
 	plt.subplots_adjust(top = 1, bottom = 0, right = 1, left = 0, hspace = 0, wspace = 0)
 	plt.margins(0,0)
-	plt.figure(figsize=(309, 600))
 	plt.imshow(image/255.)
 	plt.savefig(path)
 
@@ -52,7 +51,8 @@ def main(args):
 	# load input
 	im = imread(args.im_path, mode='RGB')
 	im = im.astype(np.float32)
-	im = imresize(im, (512,512,3)) / 255.
+	#im = imresize(im, (512,512,3)) / 255.
+	im = im/255
 
 	# create tensorflow session
 	with tf.Session() as sess:
