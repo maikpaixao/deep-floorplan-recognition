@@ -41,13 +41,15 @@ def ind2rgb(ind_im, color_map=floorplan_map):
 	return rgb_im
 
 def saveImage(image, path):
-	ret, thresh = cv2.threshold(image/255., 127, 255, cv2.THRESH_BINARY)
+	#grayImage = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+	#ret, thresh = cv2.threshold(image/255., 127, 255, cv2.THRESH_BINARY)
+	image = ind2rgb(image)
 	#plt.gca().set_axis_off()
 	#plt.margins(0,0)
 	#plt.autoscale(tight=True)
 	#plt.imshow(image/255., frameon=False)
 	#plt.savefig(path)
-	cv2.imwrite(path, thresh)
+	cv2.imwrite(path, image)
 
 def main(args):
 	# load input
