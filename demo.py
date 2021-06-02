@@ -55,7 +55,7 @@ def saveImage(image, path, door=False):
 		image = ind2rgb(floorplan)
 	else:
 		image = ind2rgb(floorplan)
-	#image = cv2.cvtColor(image, cv2.COLOR_BGRA2BGR)
+	image = cv2.cvtColor(image, cv2.COLOR_RGB2RGBA)
 	cv2.imwrite(path, floorplan/255.)
 	#cv2.imwrite(path, floorplan)
 
