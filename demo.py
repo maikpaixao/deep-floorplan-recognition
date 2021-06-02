@@ -48,8 +48,8 @@ def saveImage(image, path, door=False):
 		image = ind2rgb(floorplan)
 	else:
 		image = ind2rgb(floorplan)
-	image = cv2.cvtColor(image, cv2.COLOR_BGRA2BGR)
-	cv2.imwrite(path, image)
+	#image = cv2.cvtColor(image, cv2.COLOR_BGRA2BGR)
+	cv2.imwrite(path, image, [int(cv2.IMWRITE_PNG_COMPRESSION), 9])
 
 def main(args):
 	# load input
