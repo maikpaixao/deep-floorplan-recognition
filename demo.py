@@ -32,6 +32,14 @@ floorplan_map = {
 	10:[  0,  0,  0]  # wall
 }
 
+def saveImage2(image, path):
+	plt.gca().set_axis_off()
+	plt.subplots_adjust(top = 1, bottom = 0, right = 1, left = 0, hspace = 0, wspace = 0)
+	plt.margins(0,0)
+	plt.imshow(image/255.)
+	plt.savefig(path)
+	#plt.savefig(path, bbox_inches='tight')
+
 def ind2rgb(ind_im, color_map=floorplan_map):
 	rgb_im = np.zeros((ind_im.shape[0], ind_im.shape[1], 3))
 
@@ -100,8 +108,9 @@ def main(args):
 		#plt.savefig('result.jpg')
 		#cv2.imwrite('room_type.jpg', room_type/255.)
 		#cv2.imwrite('room_boundary.jpg', room_boundary/255.)
-		saveImage(room_type, 'room_type.png')
-		saveImage(room_boundary, 'room_boundary.png', door=True)
+		saveImage2(room_type, 'room_type.png')
+		saveImage2(room_boundary, 'room_boundary.png')
+		#saveImage(room_boundary, 'room_boundary.png', door=True)
 
 if __name__ == '__main__':
 	FLAGS, unparsed = parser.parse_known_args()
