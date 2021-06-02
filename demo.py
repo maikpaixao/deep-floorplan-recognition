@@ -43,7 +43,10 @@ def ind2rgb(ind_im, color_map=floorplan_map):
 def saveImage(image, path):
 	#grayImage = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 	#ret, thresh = cv2.threshold(image/255., 127, 255, cv2.THRESH_BINARY)
-	image = ind2rgb(image)
+	floorplan = room_boundary.copy()
+	floorplan[room_boundary==1] = 9
+	floorplan[room_boundary==2] = 10
+	image = ind2rgb(floorplan)
 	#plt.gca().set_axis_off()
 	#plt.margins(0,0)
 	#plt.autoscale(tight=True)
