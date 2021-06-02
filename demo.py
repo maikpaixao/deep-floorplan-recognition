@@ -19,7 +19,7 @@ parser.add_argument('--im_path', type=str, default='./demo/45765448.jpg',
 
 # color map
 floorplan_map = {
-	0: [255,255,255], # background
+	0: [0,0,0], # background
 	1: [192,192,224], # closet
 	2: [192,255,255], # batchroom/washroom
 	3: [224,255,192], # livingroom/kitchen/dining room
@@ -71,7 +71,7 @@ def saveImage(image, path, door=False):
 	#cv2.imwrite(path, floorplan/255.)
 	#cv2.imwrite(path, floorplan)
 	#imsave(path, floorplan/255.)
-	imsave(path, floorplan)
+	imsave(path, image)
 
 def main(args):
 	# load input
