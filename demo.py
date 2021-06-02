@@ -41,8 +41,8 @@ def ind2rgb(ind_im, color_map=floorplan_map):
 	return rgb_im
 
 def saveImage(image, path, door=False):
+	floorplan = image.copy()
 	if door==True:
-		floorplan = image.copy()
 		floorplan[image==1] = 9
 		floorplan[image==2] = 10
 		image = ind2rgb(floorplan)
