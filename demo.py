@@ -33,11 +33,18 @@ floorplan_map = {
 }
 
 def saveImage2(image, path):
-	plt.gca().set_axis_off()
-	plt.subplots_adjust(top = 1, bottom = 0, right = 1, left = 0, hspace = 0, wspace = 0)
-	plt.margins(0,0)
-	plt.imshow(image/255.)
-	plt.savefig(path, bbox_inches='tight')
+	fig = plt.figure(frameon=False)
+	fig.set_size_inches(512,512)
+	ax = plt.Axes(fig, [0., 0., 1., 1.])
+	ax.set_axis_off()
+	fig.add_axes(ax)
+	ax.imshow(image, aspect='auto')
+	fig.savefig(fname)
+	#plt.gca().set_axis_off()
+	#plt.subplots_adjust(top = 1, bottom = 0, right = 1, left = 0, hspace = 0, wspace = 0)
+	#plt.margins(0,0)
+	#plt.imshow(image/255.)
+	#plt.savefig(path, bbox_inches='tight')
 
 def ind2rgb(ind_im, color_map=floorplan_map):
 	rgb_im = np.zeros((ind_im.shape[0], ind_im.shape[1], 3))
