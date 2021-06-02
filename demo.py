@@ -99,8 +99,8 @@ def main(args):
 		#plt.savefig('result.jpg')
 		#cv2.imwrite('room_type.jpg', room_type/255.)
 		#cv2.imwrite('room_boundary.jpg', room_boundary/255.)
-		saveImage(room_type, 'room_type.jpg')
-		saveImage(room_boundary, 'room_boundary.jpg', door=True)
+		saveImage(room_type, 'room_type.png')
+		saveImage(room_boundary, 'room_boundary.png', door=True)
 
 if __name__ == '__main__':
 	FLAGS, unparsed = parser.parse_known_args()
