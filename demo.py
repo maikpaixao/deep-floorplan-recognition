@@ -50,9 +50,9 @@ def saveImage(image, path):
 def main(args):
 	# load input
 	im = imread(args.im_path, mode='RGB')
-	w,h,_ = im.shape
+	#w,h,_ = im.shape
 	im = im.astype(np.float32)
-	im = imresize(im, (w,h,3)) / 255.
+	im = imresize(im, (512,512,3)) / 255.
 	#im = im/255
 
 	# create tensorflow session
@@ -76,7 +76,7 @@ def main(args):
 
 		# infer results
 		[room_type, room_boundary] = sess.run([room_type_logit, room_boundary_logit],\
-										feed_dict={x:im.reshape(1,w,h,3)})
+										feed_dict={x:im.reshape(1,512,512,3)})
 		room_type, room_boundary = np.squeeze(room_type), np.squeeze(room_boundary)
 
 		# merge results
