@@ -50,7 +50,7 @@ def saveImage(image, path):
 def main(args):
 	# load input
 	im = imread(args.im_path, mode='RGB')
-	w,h = im.shape
+	w,h,_ = im.shape
 	im = im.astype(np.float32)
 	im = imresize(im, (w,h,3)) / 255.
 	#im = im/255
