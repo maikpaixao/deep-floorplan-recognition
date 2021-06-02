@@ -54,7 +54,8 @@ def saveImage(image, path):
 	#plt.autoscale(tight=True)
 	ax.imshow(image/255., aspect='auto')
 	#plt.imshow(image/255., frameon=False)
-	plt.savefig(path)
+	#plt.savefig(path)
+	fig.savefig(path)
 
 def main(args):
 	# load input
