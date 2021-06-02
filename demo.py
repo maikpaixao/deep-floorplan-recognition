@@ -41,21 +41,13 @@ def ind2rgb(ind_im, color_map=floorplan_map):
 	return rgb_im
 
 def saveImage(image, path):
-	fig = plt.figure(frameon=False)
+	ret, thresh = cv2.threshold(image/255., 127, 255, cv2.THRESH_BINARY)
 	#plt.gca().set_axis_off()
-	fig.set_size_inches(512,512)
-	ax = plt.Axes(fig, [0., 0., 1., 1.])
-	ax.set_axis_off()
-	ax.get_xaxis().set_visible(False)
-	ax.get_yaxis().set_visible(False)
-	
-	fig.add_axes(ax)
 	#plt.margins(0,0)
 	#plt.autoscale(tight=True)
-	ax.imshow(image/255., aspect='auto')
 	#plt.imshow(image/255., frameon=False)
 	#plt.savefig(path)
-	fig.savefig(path)
+	cv2.imwrite(path, thresh)
 
 def main(args):
 	# load input
