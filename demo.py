@@ -60,7 +60,7 @@ def saveImage(image, path, door=False):
 	#image = cv2.cvtColor(image, cv2.COLOR_BGRA2BGR)
 	#cv2.imwrite(path, floorplan/255.)
 	#cv2.imwrite(path, floorplan)
-	imsave(path, image)
+	imsave(path, image/255.)
 
 def main(args):
 	# load input
