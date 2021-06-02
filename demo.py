@@ -41,12 +41,20 @@ def ind2rgb(ind_im, color_map=floorplan_map):
 	return rgb_im
 
 def saveImage(image, path):
-	plt.gca().set_axis_off()
-	plt.subplots_adjust(top = 1, bottom = 0, right = 1, left = 0, hspace = 0, wspace = 0)
-	plt.margins(0,0)
-	plt.autoscale(tight=True)
-	plt.imshow(image/255.)
-	plt.savefig(path, bbox_inches='tight')
+	fig = plt.figure(frameon=False)
+	#plt.gca().set_axis_off()
+	fig.set_size_inches(512,512)
+	ax = plt.Axes(fig, [0., 0., 1., 1.])
+	ax.set_axis_off()
+	ax.get_xaxis().set_visible(False)
+	ax.get_yaxis().set_visible(False)
+	
+	fig.add_axes(ax)
+	#plt.margins(0,0)
+	#plt.autoscale(tight=True)
+	ax.imshow(image/255., aspect='auto')
+	#plt.imshow(image/255., frameon=False)
+	plt.savefig(path, bbox_inches='tight', pad_inches=0)
 
 def main(args):
 	# load input
