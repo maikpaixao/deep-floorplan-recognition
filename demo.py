@@ -5,6 +5,7 @@ import tensorflow as tf
 
 from scipy.misc import imread, imsave, imresize
 from matplotlib import pyplot as plt
+import cv2
 
 #os.environ['CUDA_VISIBLE_DEVICES'] = '0'
 
@@ -88,8 +89,10 @@ def main(args):
 		#plt.show()
 		
 		#plt.savefig('result.jpg')
-		saveImage(room_type, 'room_type.jpg')
-		saveImage(room_boundary, 'room_boundary.jpg')
+		cv2.imwrite('room_type.jpg', room_type)
+		cv2.imwrite('room_boundary.jpg', room_boundary)
+		#saveImage(room_type, 'room_type.jpg')
+		#saveImage(room_boundary, 'room_boundary.jpg')
 
 if __name__ == '__main__':
 	FLAGS, unparsed = parser.parse_known_args()
