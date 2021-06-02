@@ -39,6 +39,10 @@ def ind2rgb(ind_im, color_map=floorplan_map):
 
 	return rgb_im
 
+def saveImage(image, path):
+	plt.imshow(image/255.)
+	plt.savefig(path)
+
 def main(args):
 	# load input
 	im = imread(args.im_path, mode='RGB')
@@ -80,10 +84,12 @@ def main(args):
 		#plt.imshow(im)
 		#plt.subplot(122)
 		#plt.imshow(floorplan_rgb/255.)
-		plt.imshow(room_type/255.)
+		#plt.imshow(room_type/255.)
 		#plt.show()
 		
-		plt.savefig('result.jpg')
+		#plt.savefig('result.jpg')
+		saveImage(room_type, 'room_type.jpg')
+		saveImage(room_boundary, 'room_boundary.jpg')
 
 if __name__ == '__main__':
 	FLAGS, unparsed = parser.parse_known_args()
