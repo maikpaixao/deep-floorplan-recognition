@@ -10,10 +10,9 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 seed = 10
 
 # input image path
-#parser = argparse.ArgumentParser()
-
-#parser.add_argument('--phase', type=str, default='Test',
-#					help='Train/Test network.')
+parser = argparse.ArgumentParser()
+parser.add_argument('--phase', type=str, default='Test',
+					help='Train/Test network.')
 
 class MODEL(Network):
 	"""docstring for MODEL"""
