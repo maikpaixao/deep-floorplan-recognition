@@ -287,7 +287,7 @@ class MODEL(Network):
 				print>>file, '\t\tepoch {}: {}th label: accuracy = {:.4}'.format(epoch, i, mean_acc[i])		
 		file.close()
 
-def main():
+def main(args):
 	tf.set_random_seed(seed)
 	np.random.seed(seed)
 	random.seed(seed)
@@ -308,6 +308,6 @@ def main():
 		pass
 
 if __name__ == '__main__':
-	#FLAGS, unparsed = parser.parse_known_args()
-	#main(FLAGS)
+	FLAGS, unparsed = parser.parse_known_args()
+	main(FLAGS)
 	main()
