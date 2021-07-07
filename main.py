@@ -295,17 +295,19 @@ def main(args):
 	model = MODEL()
 	#model.infer()
 	
-	if args.phase.lower() == 'train':
-		loader_dict, num_batch = data_loader_bd_rm_from_tfrecord(batch_size=1)
-		# START TRAINING
-		tic = time.time()
-		model.train(loader_dict, num_batch)
-		toc = time.time()
-		print('total training + evaluation time = {} minutes'.format((toc-tic)/60))
+	#if args.phase.lower() == 'train':
+	loader_dict, num_batch = data_loader_bd_rm_from_tfrecord(batch_size=1)
+	# START TRAINING
+	tic = time.time()
+	model.train(loader_dict, num_batch)
+	toc = time.time()
+	print('total training + evaluation time = {} minutes'.format((toc-tic)/60))
+	'''
 	elif args.phase.lower() == 'test':	
 		model.infer()
 	else:
 		pass
+	'''
 
 if __name__ == '__main__':
 	FLAGS, unparsed = parser.parse_known_args()
