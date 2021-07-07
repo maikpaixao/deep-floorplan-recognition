@@ -293,7 +293,7 @@ def main():
 	random.seed(seed)
 
 	model = MODEL()
-	model.infer()
+	#model.infer()
 	
 	if args.phase.lower() == 'train':
 		loader_dict, num_batch = data_loader_bd_rm_from_tfrecord(batch_size=1)
