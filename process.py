@@ -252,10 +252,9 @@ class Process:
       for point in points_doors:
             p1 = (int(point[0][0]), int(point[0][1]))
             p2 = (int(point[1][0]), int(point[1][1]))
-
             dist_1 = cv2.pointPolygonTest(contour, p1, False)
             dist_2 = cv2.pointPolygonTest(contour, p2, False)
-
+            
             portas_dict = {}
 
             if dist_1 > 0 or dist_2>0:
@@ -283,7 +282,6 @@ class Process:
 
             if len(portas_dict)>0:
                   portas.append(portas_dict)
-
       return portas
 
   def order_points_old(self, origin, point):

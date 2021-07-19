@@ -35,8 +35,5 @@ ax = pyplot.gca()
 for box in yhat['rois']:
   print(list(box))
   #y1, x1, y2, x2 = box
-  #width, height = x2 - x1, y2 - y1
-  #rect = Rectangle((x1, y1), width, height, fill=False, color='red')
-  #ax.add_patch(rect)
 
 #pyplot.show()
