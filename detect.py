@@ -20,6 +20,12 @@ import cv2
 from matplotlib import pyplot
 from matplotlib.patches import Rectangle
 
+class NumpyEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, np.ndarray):
+            return obj.tolist()
+        return json.JSONEncoder.default(self, obj)
+
 class PredictionConfig(Config):
       NAME = "kangaroo_cfg"
       NUM_CLASSES = 1 + 1
@@ -140,7 +146,7 @@ def main(args):
                   count = count + 1
       
       with open('data.json', 'w') as fp:
-            json.dump(json_dict, fp)
+            json.dump(json_dict, fp, cls=NumpyEncoder)
 
 if __name__ == '__main__':
       FLAGS, unparsed = parser.parse_known_args()
