@@ -21,10 +21,12 @@ from matplotlib import pyplot
 from matplotlib.patches import Rectangle
 
 class NumpyEncoder(json.JSONEncoder):
-    def default(self, obj):
-        if isinstance(obj, np.ndarray):
-            return obj.tolist()
-        return json.JSONEncoder.default(self, obj)
+      def default(self, obj):
+            if isinstance(obj, np.ndarray):
+                  return obj.tolist()
+            elif isinstance(obj, np.int32):
+                  return obj.tolist()
+            return json.JSONEncoder.default(self, obj)
 
 class PredictionConfig(Config):
       NAME = "kangaroo_cfg"
