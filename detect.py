@@ -113,6 +113,14 @@ def main(args):
                   dimensions = process.format_dimensions(dimensions)
 
                   doors_bbs = detect_doors(original_image, _dmodel)
+                  width, height = doors_bbs[3] - doors_bbs[1], doors_bbs[0] - doors_bbs[2]
+
+                  points_doors = [[(doors_bbs[1], doors_bbs[0]), (doors_bbs[1]+width, doors_bbs[2])], 
+                                    [(doors_bbs[3], doors_bbs[2]), (doors_bbs[3]-width, doors_bbs[2])]]
+
+                  portas = process.find_door_within(image_cpy, points_doors, cnt, dimensions)
+                  comodo.append(portas)
+
                   wimdows_bbs = detect_doors(original_image, _wmodel)
                   
                   comodo.append(room_name)
@@ -123,8 +131,8 @@ def main(args):
 
                   comodo_dict['name'] = str(comodo[0])
                   comodo_dict['rooms'] = str(comodo[1])
-                  comodo_dict['doors'] = doors_bbs #str(portas)
-                  comodo_dict['windows'] = wimdows_bbs
+                  comodo_dict['doors'] = str(portas)
+                  #comodo_dict['windows'] = wimdows_bbs
 
                   json_dict[count] = comodo_dict
                   count = count + 1
