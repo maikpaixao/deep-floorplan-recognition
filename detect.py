@@ -125,7 +125,7 @@ def main(args):
                   for bb in doors_bbs:
                         width, height = bb[3] - bb[1], bb[0] - bb[2]
 
-                        points_doors = [[(bb[1], bb[0]), (bb[1]+width, bb[2])], 
+                        points_doors = [[(bb[1], bb[0]), (bb[1]+width, bb[0])], 
                                           [(bb[3], bb[2]), (bb[3]-width, bb[2])]]
 
                         portas = process.find_door_within(image_cpy, points_doors, cnt, dimensions)
