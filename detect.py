@@ -34,9 +34,9 @@ class PredictionConfig(Config):
       GPU_COUNT = 1
       IMAGES_PER_GPU = 1
 
-def detect_doors(images, model):
+def detect_doors(image, model):
       points = []
-      image = cv2.imread('image.jpg')
+      #image = cv2.imread('image.jpg')
       scaled_image = mold_image(image, cfg)
       sample = expand_dims(scaled_image, 0)
       yhat = model.detect(sample, verbose=0)[0]
@@ -45,9 +45,9 @@ def detect_doors(images, model):
             points.append(list(box))
       return points
 
-def detect_windows(images, model):
+def detect_windows(image, model):
       points = []
-      image = cv2.imread('image.jpg')
+      #image = cv2.imread('image.jpg')
       scaled_image = mold_image(image, cfg)
       sample = expand_dims(scaled_image, 0)
       yhat = model.detect(sample, verbose=0)[0]
@@ -123,7 +123,7 @@ def main(args):
                   doors_bbs = detect_doors(original_image, _dmodel)
                   doors_list = []
                   for bb in doors_bbs:
-                        width, height = bb[3] - bb[1], bb[0] - bb[2]
+                        width, height = bb[3] - bb[1], bb[2] - bb[0]
 
                         points_doors = [[(bb[1], bb[0]), (bb[1]+width, bb[0])], 
                                           [(bb[3], bb[2]), (bb[3]-width, bb[2])]]
