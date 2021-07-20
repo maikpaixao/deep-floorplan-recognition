@@ -114,10 +114,10 @@ def main(args):
 
                   doors_bbs = detect_doors(original_image, _dmodel)
                   for bb in doors_bbs:
-                        width, height = doors_bbs[3] - doors_bbs[1], doors_bbs[0] - doors_bbs[2]
+                        width, height = bb[3] - bb[1], bb[0] - bb[2]
 
-                        points_doors = [[(doors_bbs[1], doors_bbs[0]), (doors_bbs[1]+width, doors_bbs[2])], 
-                                          [(doors_bbs[3], doors_bbs[2]), (doors_bbs[3]-width, doors_bbs[2])]]
+                        points_doors = [[(bb[1], bb[0]), (bb[1]+width, bb[2])], 
+                                          [(bb[3], bb[2]), (bb[3]-width, bb[2])]]
 
                         portas = process.find_door_within(image_cpy, points_doors, cnt, dimensions)
                         comodo.append(portas)
