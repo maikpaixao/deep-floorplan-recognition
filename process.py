@@ -250,8 +250,8 @@ class Process:
   def find_door_within(self, image_cpy, points_doors, contour, dimensions):
       portas = []
       for point in points_doors:
-            p1 = (int(point[0][0]), int(point[0][1]))
-            p2 = (int(point[1][0]), int(point[1][1]))
+            p1 = (int(point[0][1]), int(point[0][0]))
+            p2 = (int(point[1][1]), int(point[1][0]))
             dist_1 = cv2.pointPolygonTest(contour, p1, False)
             dist_2 = cv2.pointPolygonTest(contour, p2, False)
             
@@ -271,11 +271,11 @@ class Process:
                         _ref = None
 
                         if mean[0] > center[0]:
-                              _ref = 'esta mais a esquerda'
+                              _ref = 'esquerda'
                         elif mean[0] < center[0]:
-                              _ref = 'esta mais a direita'
+                              _ref = 'direita'
                         else:
-                              _ref = 'esta no centro'
+                              _ref = 'centro'
 
                         portas_dict['coordenadas'] = point
                         portas_dict['distancia_referencia'] = _ref
