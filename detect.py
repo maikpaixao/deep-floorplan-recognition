@@ -72,6 +72,7 @@ parser.add_argument('--im_path', type=str, default='./demo/45765448.jpg',
 def main(args):
       process = Process()
       original_image = Image.open("teste/original_5.jpg").convert("RGBA")
+      _original_image = cv2.imread("teste/original_5.jpg")
       #original_image = Image.open(args).convert("RGBA")
       w,h = original_image.size
 
@@ -120,7 +121,7 @@ def main(args):
                   dimensions = process.extract_text(text_img)
                   dimensions = process.format_dimensions(dimensions)
 
-                  doors_bbs = detect_doors(original_image, _dmodel)
+                  doors_bbs = detect_doors(_original_image, _dmodel)
                   doors_list = []
                   for bb in doors_bbs:
                         width, height = bb[3] - bb[1], bb[2] - bb[0]
@@ -131,7 +132,7 @@ def main(args):
                         portas = process.find_door_within(image_cpy, points_doors, cnt, dimensions)
                         doors_list.append(np.array(portas))
 
-                  wimdows_bbs = detect_doors(original_image, _wmodel)
+                  wimdows_bbs = detect_doors(_original_image, _wmodel)
                   
                   #comodo.append(room_name)
                   #comodo.append(process.to_polygon(approx))
