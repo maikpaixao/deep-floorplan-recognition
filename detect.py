@@ -121,7 +121,7 @@ def main(args):
                                           [(bb[3], bb[2]), (bb[3]-width, bb[2])]]
 
                         portas = process.find_door_within(image_cpy, points_doors, cnt, dimensions)
-                        doors_list.append(portas)
+                        doors_list.append(np.array(portas))
 
                   wimdows_bbs = detect_doors(original_image, _wmodel)
                   
@@ -132,7 +132,7 @@ def main(args):
                   #comodo.append(portas)
 
                   comodo_dict['name'] = room_name#str(comodo[0])
-                  comodo_dict['rooms'] = process.to_polygon(approx)#str(comodo[1])
+                  comodo_dict['rooms'] = np.array(process.to_polygon(approx)) #str(comodo[1])
                   comodo_dict['doors'] = doors_list#str(portas)
                   #comodo_dict['windows'] = wimdows_bbs
 
