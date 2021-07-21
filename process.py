@@ -244,8 +244,8 @@ class Process:
       cx = int(M["m10"] / M["m00"])
       cy = int(M["m01"] / M["m00"])
       center = (cx, cy)
-      mean = ((int(point[0][0]) + int(point[1][0]))/2, (int(point[0][1]) + int(point[1][1]))/2)
-      return center, mean
+      #mean = ((int(point[0][0]) + int(point[1][0]))/2, (int(point[0][1]) + int(point[1][1]))/2)
+      return center#, mean
 
   def find_door_within(self, image_cpy, points_doors, contour, dimensions):
       portas = []
@@ -269,12 +269,13 @@ class Process:
                               portas_dict['coordenadas'] = point
                               portas_dict['distancia_referencia'] = dimensions[0]
                   else:
-                        center, mean = self.relative_distance(contour, point)
+                        #center, mean = self.relative_distance(contour, point)
+                        center = self.relative_distance(contour, point)
                         _ref = None
 
-                        if mean[0] > center[0]:
+                        if point[0] > center[0]:
                               _ref = 'esquerda'
-                        elif mean[0] < center[0]:
+                        elif mepointan[0] < center[0]:
                               _ref = 'direita'
                         else:
                               _ref = 'centro'
