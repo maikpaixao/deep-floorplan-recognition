@@ -275,7 +275,7 @@ class Process:
 
                         if point[0] > center[0]:
                               _ref = 'esquerda'
-                        elif mepointan[0] < center[0]:
+                        elif point[0] < center[0]:
                               _ref = 'direita'
                         else:
                               _ref = 'centro'
