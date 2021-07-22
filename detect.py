@@ -96,12 +96,6 @@ def main(args):
       cnts = imutils.grab_contours(cnts)
       cnts = sorted(cnts, key=cv2.contourArea, reverse=True)
 
-      #process.generate_entries(image_entry_path, w, h)
-
-      #image_doors = cv2.imread(image_entry_path[:-4] + 'entries' + image_entry_path[-4:])
-      #points_in_door, points_out_door = process.detect_floor(image_doors) ## door coordinates
-      #points_doors = points_in_door + points_out_door
-
       image_cpy = image.copy()
       count = 0
       for cnt in cnts[1:]:
@@ -129,10 +123,19 @@ def main(args):
                         points_doors = [(bb[1], bb[0]), (bb[1]+width, bb[0]), 
                                           (bb[3], bb[2]), (bb[3]-width, bb[2])]
 
-                        portas = process.find_door_within(image_cpy, points_doors, cnt, dimensions)
-                        doors_list.append(np.array(portas))
+                        doors = process.find_door_within(image_cpy, points_doors, cnt, dimensions)
+                        doors_list.append(np.array(doors))
 
-                  wimdows_bbs = detect_doors(_original_image, _wmodel)
+                  windows_bbs = detect_doors(_original_image, _wmodel)
+                  windows_list = []
+                  for bb in windows_bbs:
+                        width, height = bb[3] - bb[1], bb[2] - bb[0]
+
+                        points_windows = [(bb[1], bb[0]), (bb[1]+width, bb[0]), 
+                                          (bb[3], bb[2]), (bb[3]-width, bb[2])]
+
+                        windows = process.find_door_within(image_cpy, points_windows, cnt, dimensions)
+                        windows_list.append(np.array(windows))
                   
                   #comodo.append(room_name)
                   #comodo.append(process.to_polygon(approx))
@@ -140,10 +143,10 @@ def main(args):
                   #portas = process.find_door_within(image_cpy, points_doors, cnt, dimensions)
                   #comodo.append(portas)
 
-                  comodo_dict['name'] = room_name#str(comodo[0])
-                  comodo_dict['rooms'] = np.array(process.to_polygon(approx)) #str(comodo[1])
-                  comodo_dict['doors'] = doors_list#str(portas)
-                  #comodo_dict['windows'] = wimdows_bbs
+                  comodo_dict['label'] = room_name#str(comodo[0])
+                  comodo_dict['rooms_coordinates'] = np.array(process.to_polygon(approx)) #str(comodo[1])
+                  comodo_dict['doors'] = doors_lis#str(portas)
+                  comodo_dict['windows'] = windows_list
 
                   json_dict[count] = comodo_dict
                   count = count + 1

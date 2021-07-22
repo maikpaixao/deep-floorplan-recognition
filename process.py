@@ -247,6 +247,44 @@ class Process:
       mean = ((int(point[0][0]) + int(point[1][0]))/2, (int(point[1][0]) + int(point[1][1]))/2)
       return center, mean
 
+  def find_window_within(self, image_cpy, windows_doors, contour, dimensions):
+      windows = []
+      dist_1 = cv2.pointPolygonTest(contour, points_doors[0], False)
+      dist_2 = cv2.pointPolygonTest(contour, points_doors[1], False)
+      dist_3 = cv2.pointPolygonTest(contour, points_doors[2], False)
+      dist_4 = cv2.pointPolygonTest(contour, points_doors[3], False)
+            
+      windows_dict = {}
+
+      if dist_1 > 0 or dist_2>0 or dist_3>0 or dist_4>0:
+            if len(dimensions)>1:
+                  if self.is_horizontal(windows_doors[0], windows_doors[1]):
+                        windows_dict['coordenadas'] = windows_doors
+                        windows_dict['distancia_referencia'] = dimensions[1]
+                  else:
+                        windows_dict['coordenadas'] = windows_doors
+                        windows_dict['distancia_referencia'] = dimensions[0]
+            
+            else:
+                  center, mean = self.relative_distance(contour, [windows_doors[0], windows_doors[3]])
+                  #center = self.relative_distance(contour, point)
+                  _ref = None
+
+                  if mean[0] > center[0]:
+                        _ref = 'esquerda'
+                  elif mean[0] < center[0]:
+                        _ref = 'direita'
+                  else:
+                        _ref = 'centro'
+
+                  windows_dict['coordenadas'] = windows_doors
+                  windows_dict['distancia_referencia'] = _ref
+            
+
+      if len(windows_dict)>0:
+            windows.append(windows_dict)
+      return windows
+
   def find_door_within(self, image_cpy, points_doors, contour, dimensions):
       portas = []
       #p1 = point
