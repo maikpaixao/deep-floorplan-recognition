@@ -136,16 +136,10 @@ def main(args):
 
                         windows = process.find_door_within(image_cpy, points_windows, cnt, dimensions)
                         windows_list.append(np.array(windows))
-                  
-                  #comodo.append(room_name)
-                  #comodo.append(process.to_polygon(approx))
 
-                  #portas = process.find_door_within(image_cpy, points_doors, cnt, dimensions)
-                  #comodo.append(portas)
-
-                  comodo_dict['label'] = room_name#str(comodo[0])
-                  comodo_dict['rooms_coordinates'] = np.array(process.to_polygon(approx)) #str(comodo[1])
-                  comodo_dict['doors'] = doors_list#str(portas)
+                  comodo_dict['label'] = room_name
+                  comodo_dict['rooms_coordinates'] = np.array(process.to_polygon(approx))
+                  comodo_dict['doors'] = doors_list
                   comodo_dict['windows'] = windows_list
 
                   json_dict[count] = comodo_dict

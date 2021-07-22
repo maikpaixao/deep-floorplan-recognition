@@ -281,9 +281,9 @@ class Process:
                   windows_dict['distancia_referencia'] = _ref
             
 
-      if len(windows_dict)>0:
-            windows.append(windows_dict)
-      return windows
+      #if len(windows_dict)>0:
+            #windows.append(windows_dict)
+      return windows_dict
 
   def find_door_within(self, image_cpy, points_doors, contour, dimensions):
       portas = []
