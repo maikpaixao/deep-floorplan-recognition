@@ -259,25 +259,24 @@ class Process:
       if dist_1 > 0 or dist_2>0 or dist_3>0 or dist_4>0:
             if len(dimensions)>1:
                   if self.is_horizontal(windows_doors[0], windows_doors[1]):
-                        windows_dict['coordenadas'] = windows_doors
-                        windows_dict['distancia_referencia'] = dimensions[1]
+                        windows_dict['coordinates'] = windows_doors
+                        windows_dict['reference'] = dimensions[1]
                   else:
-                        windows_dict['coordenadas'] = windows_doors
-                        windows_dict['distancia_referencia'] = dimensions[0]
+                        windows_dict['coordinates'] = windows_doors
+                        windows_dict['reference'] = dimensions[0]
             
             else:
                   center, mean = self.relative_distance(contour, [windows_doors[0], windows_doors[3]])
                   _ref = None
                   if mean[0] > center[0]:
-                        _ref = 'esquerda'
+                        _ref = 'rooms_left'
                   elif mean[0] < center[0]:
-                        _ref = 'direita'
+                        _ref = 'rooms_right'
                   else:
-                        _ref = 'centro'
+                        _ref = 'rooms_center'
 
-                  windows_dict['coordenadas'] = windows_doors
-                  windows_dict['distancia_referencia'] = _ref
-            
+                  windows_dict['coordinates'] = windows_doors
+                  windows_dict['reference'] = _ref
 
       #if len(windows_dict)>0:
             #windows.append(windows_dict)
