@@ -124,9 +124,10 @@ def main(args):
                                           (bb[3], bb[2]), (bb[3]-width, bb[2])]
 
                         doors = process.find_door_within(image_cpy, points_doors, cnt, dimensions)
-                        doors_list.append(np.array(doors))
+                        if len(doors)>0
+                              doors_list.append(np.array(doors))
 
-                  windows_bbs = detect_doors(_original_image, _wmodel)
+                  windows_bbs = detect_windows(_original_image, _wmodel)
                   windows_list = []
                   for bb in windows_bbs:
                         width, height = bb[3] - bb[1], bb[2] - bb[0]
@@ -135,7 +136,8 @@ def main(args):
                                           (bb[3], bb[2]), (bb[3]-width, bb[2])]
 
                         windows = process.find_window_within(image_cpy, points_windows, cnt, dimensions)
-                        windows_list.append(np.array(windows))
+                        if len(windows)>0
+                              swindows_list.append(np.array(windows))
 
                   comodo_dict['label'] = room_name
                   comodo_dict['rooms_coordinates'] = np.array(process.to_polygon(approx))
