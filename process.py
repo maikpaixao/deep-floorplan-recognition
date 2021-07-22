@@ -249,42 +249,44 @@ class Process:
 
   def find_door_within(self, image_cpy, points_doors, contour, dimensions):
       portas = []
-      for point in points_doors:
-            p1 = point
-            p2 = point
-            #p2 = (int(point[0][1]), int(point[0][0]))
-            #p2 = (int(point[1][1]), int(point[1][0]))
-            dist_1 = cv2.pointPolygonTest(contour, p1, False)
-            dist_2 = cv2.pointPolygonTest(contour, p2, False)
+      #p1 = point
+      #p2 = point
+      #p2 = (int(point[0][1]), int(point[0][0]))
+      #p2 = (int(point[1][1]), int(point[1][0]))
+      dist_1 = cv2.pointPolygonTest(contour, points_doors[0], False)
+      dist_2 = cv2.pointPolygonTest(contour, points_doors[1], False)
+      dist_3 = cv2.pointPolygonTest(contour, points_doors[2], False)
+      dist_4 = cv2.pointPolygonTest(contour, points_doors[3], False)
             
-            portas_dict = {}
+      portas_dict = {}
 
-            if dist_1 > 0 or dist_2>0:
-                  cv2.line(image_cpy, p1, p2, (0, 255, 0), thickness=3)
-                  if len(dimensions)>1:
-                        if self.is_horizontal(p1, p2):
-                              portas_dict['coordenadas'] = point
-                              portas_dict['distancia_referencia'] = dimensions[1]
-                        else:
-                              portas_dict['coordenadas'] = point
-                              portas_dict['distancia_referencia'] = dimensions[0]
+      if dist_1 > 0 or dist_2>0 or dist_3>0 or dist_4>0:
+            if len(dimensions)>1:
+                  #if self.is_horizontal(p1, p2):
+                  portas_dict['coordenadas'] = points_doors
+                  portas_dict['distancia_referencia'] = dimensions#[1]
+                  #else:
+                        #portas_dict['coordenadas'] = point
+                        #portas_dict['distancia_referencia'] = dimensions[0]
+            '''
+            else:
+                  #center, mean = self.relative_distance(contour, point)
+                  center = self.relative_distance(contour, point)
+                  _ref = None
+
+                  if point[0] > center[0]:
+                        _ref = 'esquerda'
+                  elif point[0] < center[0]:
+                        _ref = 'direita'
                   else:
-                        #center, mean = self.relative_distance(contour, point)
-                        center = self.relative_distance(contour, point)
-                        _ref = None
+                        _ref = 'centro'
 
-                        if point[0] > center[0]:
-                              _ref = 'esquerda'
-                        elif point[0] < center[0]:
-                              _ref = 'direita'
-                        else:
-                              _ref = 'centro'
+                  portas_dict['coordenadas'] = point
+                  portas_dict['distancia_referencia'] = _ref
+            '''
 
-                        portas_dict['coordenadas'] = point
-                        portas_dict['distancia_referencia'] = _ref
-
-            if len(portas_dict)>0:
-                  portas.append(portas_dict)
+      if len(portas_dict)>0:
+            portas.append(portas_dict)
       return portas
 
   def order_points_old(self, origin, point):
