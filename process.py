@@ -244,8 +244,8 @@ class Process:
       cx = int(M["m10"] / M["m00"])
       cy = int(M["m01"] / M["m00"])
       center = (cx, cy)
-      #mean = ((int(point[0][0]) + int(point[1][0]))/2, (int(point[0][1]) + int(point[1][1]))/2)
-      return center#, mean
+      mean = ((int(point[0][0]) + int(point[1][0]))/2, (int(point[1][0]) + int(point[1][1]))/2)
+      return center, mean
 
   def find_door_within(self, image_cpy, points_doors, contour, dimensions):
       portas = []
@@ -262,28 +262,28 @@ class Process:
 
       if dist_1 > 0 or dist_2>0 or dist_3>0 or dist_4>0:
             if len(dimensions)>1:
-                  #if self.is_horizontal(p1, p2):
-                  portas_dict['coordenadas'] = points_doors
-                  portas_dict['distancia_referencia'] = dimensions#[1]
-                  #else:
-                        #portas_dict['coordenadas'] = point
-                        #portas_dict['distancia_referencia'] = dimensions[0]
-            '''
+                  if self.is_horizontal(points_doors[0], points_doors[1]):
+                        portas_dict['coordenadas'] = points_doors
+                        portas_dict['distancia_referencia'] = dimensions[1]
+                  else:
+                        portas_dict['coordenadas'] = points_doors
+                        portas_dict['distancia_referencia'] = dimensions[0]
+            
             else:
-                  #center, mean = self.relative_distance(contour, point)
-                  center = self.relative_distance(contour, point)
+                  center, mean = self.relative_distance(contour, [points_doors[0], points_doors[3]])
+                  #center = self.relative_distance(contour, point)
                   _ref = None
 
-                  if point[0] > center[0]:
+                  if mean[0] > center[0]:
                         _ref = 'esquerda'
-                  elif point[0] < center[0]:
+                  elif mean[0] < center[0]:
                         _ref = 'direita'
                   else:
                         _ref = 'centro'
 
-                  portas_dict['coordenadas'] = point
+                  portas_dict['coordenadas'] = points_doors
                   portas_dict['distancia_referencia'] = _ref
-            '''
+            
 
       if len(portas_dict)>0:
             portas.append(portas_dict)
