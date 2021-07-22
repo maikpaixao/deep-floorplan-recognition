@@ -249,10 +249,10 @@ class Process:
 
   def find_window_within(self, image_cpy, windows_doors, contour, dimensions):
       windows = []
-      dist_1 = cv2.pointPolygonTest(contour, points_doors[0], False)
-      dist_2 = cv2.pointPolygonTest(contour, points_doors[1], False)
-      dist_3 = cv2.pointPolygonTest(contour, points_doors[2], False)
-      dist_4 = cv2.pointPolygonTest(contour, points_doors[3], False)
+      dist_1 = cv2.pointPolygonTest(contour, windows_doors[0], False)
+      dist_2 = cv2.pointPolygonTest(contour, windows_doors[1], False)
+      dist_3 = cv2.pointPolygonTest(contour, windows_doors[2], False)
+      dist_4 = cv2.pointPolygonTest(contour, windows_doors[3], False)
             
       windows_dict = {}
 
@@ -269,7 +269,6 @@ class Process:
                   center, mean = self.relative_distance(contour, [windows_doors[0], windows_doors[3]])
                   #center = self.relative_distance(contour, point)
                   _ref = None
-
                   if mean[0] > center[0]:
                         _ref = 'esquerda'
                   elif mean[0] < center[0]:

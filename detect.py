@@ -134,7 +134,7 @@ def main(args):
                         points_windows = [(bb[1], bb[0]), (bb[1]+width, bb[0]), 
                                           (bb[3], bb[2]), (bb[3]-width, bb[2])]
 
-                        windows = process.find_door_within(image_cpy, points_windows, cnt, dimensions)
+                        windows = process.find_window_within(image_cpy, points_windows, cnt, dimensions)
                         windows_list.append(np.array(windows))
 
                   comodo_dict['label'] = room_name
