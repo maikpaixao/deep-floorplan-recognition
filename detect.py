@@ -137,7 +137,7 @@ def main(args):
 
                         windows = process.find_window_within(image_cpy, points_windows, cnt, dimensions)
                         if len(windows)>0:
-                              swindows_list.append(np.array(windows))
+                              windows_list.append(np.array(windows))
 
                   comodo_dict['label'] = room_name
                   comodo_dict['rooms_coordinates'] = np.array(process.to_polygon(approx))
