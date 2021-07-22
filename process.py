@@ -267,7 +267,6 @@ class Process:
             
             else:
                   center, mean = self.relative_distance(contour, [windows_doors[0], windows_doors[3]])
-                  #center = self.relative_distance(contour, point)
                   _ref = None
                   if mean[0] > center[0]:
                         _ref = 'esquerda'
@@ -285,46 +284,40 @@ class Process:
       return windows_dict
 
   def find_door_within(self, image_cpy, points_doors, contour, dimensions):
-      portas = []
-      #p1 = point
-      #p2 = point
-      #p2 = (int(point[0][1]), int(point[0][0]))
-      #p2 = (int(point[1][1]), int(point[1][0]))
+      doors = []
       dist_1 = cv2.pointPolygonTest(contour, points_doors[0], False)
       dist_2 = cv2.pointPolygonTest(contour, points_doors[1], False)
       dist_3 = cv2.pointPolygonTest(contour, points_doors[2], False)
       dist_4 = cv2.pointPolygonTest(contour, points_doors[3], False)
             
-      portas_dict = {}
+      doors_dict = {}
 
       if dist_1 > 0 or dist_2>0 or dist_3>0 or dist_4>0:
             if len(dimensions)>1:
                   if self.is_horizontal(points_doors[0], points_doors[1]):
-                        portas_dict['coordenadas'] = points_doors
-                        portas_dict['distancia_referencia'] = dimensions[1]
+                        doors_dict['coordinates'] = points_doors
+                        doors_dict['reference'] = dimensions[1]
                   else:
-                        portas_dict['coordenadas'] = points_doors
-                        portas_dict['distancia_referencia'] = dimensions[0]
+                        doors_dict['coordinates'] = points_doors
+                        doors_dict['reference'] = dimensions[0]
             
             else:
                   center, mean = self.relative_distance(contour, [points_doors[0], points_doors[3]])
-                  #center = self.relative_distance(contour, point)
                   _ref = None
 
                   if mean[0] > center[0]:
-                        _ref = 'esquerda'
+                        _ref = 'rooms_left'
                   elif mean[0] < center[0]:
-                        _ref = 'direita'
+                        _ref = 'rooms_right'
                   else:
-                        _ref = 'centro'
+                        _ref = 'rooms_center'
 
-                  portas_dict['coordenadas'] = points_doors
-                  portas_dict['distancia_referencia'] = _ref
-            
+                  doors_dict['coordinates'] = points_doors
+                  doors_dict['reference'] = _ref
 
-      if len(portas_dict)>0:
-            portas.append(portas_dict)
-      return portas
+      #if len(portas_dict)>0:
+            #portas.append(portas_dict)
+      return doors_dict
 
   def order_points_old(self, origin, point):
     refvec = [0, 1]
