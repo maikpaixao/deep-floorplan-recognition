@@ -66,11 +66,6 @@ def saveImage(image, path, door=False):
 	else:
 		image = ind2rgb(floorplan)
 	
-	#image = np.uint8(image)
-	#image = cv2.cvtColor(image, cv2.COLOR_BGRA2BGR)
-	#cv2.imwrite(path, floorplan/255.)
-	#cv2.imwrite(path, floorplan)
-	#imsave(path, floorplan/255.)
 	imsave(path, image)
 
 def main(args):
@@ -83,46 +78,31 @@ def main(args):
 
 	# create tensorflow session
 	with tf.Session() as sess:
-		
-		# initialize
 		sess.run(tf.group(tf.global_variables_initializer(),
 					tf.local_variables_initializer()))
 
-		# restore pretrained model
 		saver = tf.train.import_meta_graph('./pretrained/pretrained_r3d.meta')
 		saver.restore(sess, './pretrained/pretrained_r3d')
 
-		# get default graph
 		graph = tf.get_default_graph()
 
-		# restore inputs & outpus tensor
 		x = graph.get_tensor_by_name('inputs:0')
 		room_type_logit = graph.get_tensor_by_name('Cast:0')
 		room_boundary_logit = graph.get_tensor_by_name('Cast_1:0')
 
-		# infer results
 		[room_type, room_boundary] = sess.run([room_type_logit, room_boundary_logit],\
 										feed_dict={x:im.reshape(1,512,512,3)})
 		room_type, room_boundary = np.squeeze(room_type), np.squeeze(room_boundary)
 
-		# merge results
 		floorplan = room_type.copy()
 		floorplan[room_boundary==1] = 9
 		floorplan[room_boundary==2] = 10
 		floorplan_rgb = ind2rgb(floorplan)
-
-		# plot results
-		#plt.subplot(121)
-		#plt.imshow(im)
-		#plt.subplot(122)
-		#plt.imshow(floorplan_rgb/255.)
-		#plt.imshow(room_type/255.)
-		#plt.show()
 		
 		#plt.savefig('result.jpg')
 		saveImage(room_type, 'room_type.png')
 		#saveImage2(room_boundary, 'room_boundary.png')
-		saveImage(room_boundary, 'room_boundary.png', door=True)
+		#saveImage(room_boundary, 'room_boundary.png', door=True)
 
 if __name__ == '__main__':
 	FLAGS, unparsed = parser.parse_known_args()
