@@ -71,15 +71,14 @@ parser.add_argument('--im_path', type=str, default='./demo/45765448.jpg',
 
 def main(args):
       process = Process()
-      original_image = Image.open("teste/original_5.jpg").convert("RGBA")
-      _original_image = cv2.imread("teste/original_5.jpg")
+      original_image = Image.open("teste/022.jpg").convert("RGBA")
+      _original_image = cv2.imread("teste/022.jpg")
       #original_image = Image.open(args).convert("RGBA")
       w,h = original_image.size
 
-      image_entry_path = 'teste/fronteiras_5.png'
-      #image_entry_path = args[:-4]+'_room_boundary.png'
+      #image_entry_path = 'teste/fronteiras_5.png'
       #image_rooms_path = args[:-4]+'_room_type.png'
-      image = cv2.imread('teste/comodos_5.png')
+      image = cv2.imread('teste/022_room_type.png')
       #image = cv2.imread(image_rooms_path)
 
       image = cv2.resize(image, (w,h), interpolation = cv2.INTER_AREA)
