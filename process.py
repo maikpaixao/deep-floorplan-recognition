@@ -62,7 +62,7 @@ class Process:
       return newIm
 
   def extract_text(self, newIm):
-      config = '--psm 3 --oem 3'
+      config = '--psm 1 --oem 3'
       data = pytesseract.image_to_data(newIm, config=config, lang='eng', output_type=Output.DICT)
       conf = np.asarray(data['conf']).astype('int8')
 
@@ -76,7 +76,7 @@ class Process:
       
       dimensions = ''
       for t in text_:
-            if 'm' in list(t) or 'cm' in list(t) or 'x' in list(t) or 'X' in list(t):
+            if 'm' in list(t) or 'cm' in list(t) or '.' in list(t) or '.' in list(t):
                   if len(t) > 1:
                         dimensions += t + ' '
       return dimensions
