@@ -76,8 +76,7 @@ class Process:
       
       dimensions = ''
       for t in text_:
-            #print(t)
-            if 'm' in list(t) or 'cm' in list(t):
+            if 'm' in list(t) or 'cm' in list(t) or 'x' in list(t) or 'X' in list(t):
                   if len(t) > 1:
                         dimensions += t + ' '
       return dimensions
