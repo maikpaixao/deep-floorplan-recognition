@@ -61,10 +61,10 @@ cfg = PredictionConfig()
 json_dict = {}
 
 _dmodel = MaskRCNN(mode='inference', model_dir='./', config=cfg)
-_dmodel.load_weights('./doors_model.h5', by_name=True)
+_dmodel.load_weights('./h5_models/doors_model.h5', by_name=True)
 
 _wmodel = MaskRCNN(mode='inference', model_dir='./', config=cfg)
-_wmodel.load_weights('./windows_model.h5', by_name=True)
+_wmodel.load_weights('./h5_models/windows_model.h5', by_name=True)
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--im_path', type=str, default='./teste/095.jpg', help='input image paths.')
@@ -100,7 +100,7 @@ def main(args):
             approx = cv2.approxPolyDP(cnt, 0.01 * peri, True)
 
             if(int(cv2.contourArea(cnt)) > 60):
-                  comodos_image = Image.open("teste/comodos_5.png").convert("RGBA")
+                  comodos_image = Image.open("./teste/room_type.png").convert("RGBA")
                   comodos_image = comodos_image.resize((w,h), Image.ANTIALIAS)
 
                   color_img = process.crop_box(cnt, np.array(comodos_image), margin=0)
