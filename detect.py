@@ -147,4 +147,4 @@ def main(args):
 
 if __name__ == '__main__':
       FLAGS, unparsed = parser.parse_known_args()
-      main(FLAGS.im_path)
+      main(FLAGS)
