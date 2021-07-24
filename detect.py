@@ -66,20 +66,16 @@ _wmodel = MaskRCNN(mode='inference', model_dir='./', config=cfg)
 _wmodel.load_weights('./windows_model.h5', by_name=True)
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--im_path', type=str, default='./demo/45765448.jpg',
-                    help='input image paths.')
+parser.add_argument('--im_path', type=str, default='./teste/095.jpg', help='input image paths.')
 
 def main(args):
       process = Process()
-      original_image = Image.open("teste/095.jpg").convert("RGBA")
-      _original_image = cv2.imread("teste/095.jpg")
-      #original_image = Image.open(args).convert("RGBA")
+      #original_image = Image.open("teste/095.jpg").convert("RGBA")
+      _original_image = cv2.imread(args.im_path)
+      original_image = Image.open(args.im_path).convert("RGBA")
       w,h = original_image.size
 
-      #image_entry_path = 'teste/fronteiras_5.png'
-      #image_rooms_path = args[:-4]+'_room_type.png'
-      image = cv2.imread('teste/095_room_type.png')
-      #image = cv2.imread(image_rooms_path)
+      image = cv2.imread('./teste/room_type.png')
 
       image = cv2.resize(image, (w,h), interpolation = cv2.INTER_AREA)
       image = cv2.medianBlur(image, 5)
