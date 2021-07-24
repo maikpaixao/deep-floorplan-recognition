@@ -10,9 +10,8 @@ import cv2
 #os.environ['CUDA_VISIBLE_DEVICES'] = '0'
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
-parser = argparse.ArgumentParser()
-
-parser.add_argument('--im_path', type=str, default='./demo/45765448.jpg', help='input image paths.')
+#parser = argparse.ArgumentParser()
+#parser.add_argument('--im_path', type=str, default='./teste/45765448.jpg', help='input image paths.')
 
 floorplan_map = {
 	0: [0,0,0], # background

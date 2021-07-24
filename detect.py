@@ -17,6 +17,7 @@ from mrcnn.config import Config
 from mrcnn.model import MaskRCNN
 from mrcnn.utils import Dataset
 import cv2
+import generate_mask
 from matplotlib import pyplot
 from matplotlib.patches import Rectangle
 
@@ -69,14 +70,14 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--im_path', type=str, default='./teste/095.jpg', help='input image paths.')
 
 def main(args):
+      generate_mask.main(args)
       process = Process()
-      #original_image = Image.open("teste/095.jpg").convert("RGBA")
+
       _original_image = cv2.imread(args.im_path)
       original_image = Image.open(args.im_path).convert("RGBA")
       w,h = original_image.size
 
       image = cv2.imread('./teste/room_type.png')
-
       image = cv2.resize(image, (w,h), interpolation = cv2.INTER_AREA)
       image = cv2.medianBlur(image, 5)
       gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
@@ -86,7 +87,6 @@ def main(args):
       erod = cv2.dilate(erod, kernel, iterations = 2)
 
       ret, thresh = cv2.threshold(erod, 127, 255, cv2.THRESH_BINARY_INV)
-
       cnts = cv2.findContours(thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
       cnts = imutils.grab_contours(cnts)
       cnts = sorted(cnts, key=cv2.contourArea, reverse=True)
