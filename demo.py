@@ -8,16 +8,12 @@ from matplotlib import pyplot as plt
 import cv2
 
 #os.environ['CUDA_VISIBLE_DEVICES'] = '0'
-
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
-# input image path
 parser = argparse.ArgumentParser()
 
-parser.add_argument('--im_path', type=str, default='./demo/45765448.jpg',
-                    help='input image paths.')
+parser.add_argument('--im_path', type=str, default='./demo/45765448.jpg', help='input image paths.')
 
-# color map
 floorplan_map = {
 	0: [0,0,0], # background
 	1: [192,192,224], # closet
@@ -33,19 +29,8 @@ floorplan_map = {
 }
 
 def saveImage2(image, path):
-	'''
-	fig = plt.figure(frameon=False)
-	fig.set_size_inches(512,512)
-	ax = plt.Axes(fig, [0., 0., 1., 1.])
-	ax.set_axis_off()
-	fig.add_axes(ax)
-	ax.imshow(image, aspect='auto')
-	fig.savefig(path)
-	'''
 	plt.gca().set_axis_off()
 	plt.figure(figsize=(512/100, 512/100), dpi=100)
-	#plt.subplots_adjust(top = 1, bottom = 0, right = 1, left = 0, hspace = 0, wspace = 0)
-	#plt.margins(0,0)
 	plt.imshow(image/255.)
 	plt.savefig(path, bbox_inches='tight',transparent=True, pad_inches=0)
 
@@ -54,7 +39,6 @@ def ind2rgb(ind_im, color_map=floorplan_map):
 
 	for i, rgb in color_map.items():
 		rgb_im[(ind_im==i)] = rgb
-
 	return rgb_im
 
 def saveImage(image, path, door=False):
@@ -65,18 +49,14 @@ def saveImage(image, path, door=False):
 		image = ind2rgb(floorplan)
 	else:
 		image = ind2rgb(floorplan)
-	
 	imsave(path, image)
 
 def main(args):
-	# load input
 	im = imread(args.im_path, mode='RGB')
-	#w,h,_ = im.shape
 	im = im.astype(np.float32)
 	im = imresize(im, (512,512,3)) / 255.
 	#im = im/255
 
-	# create tensorflow session
 	with tf.Session() as sess:
 		sess.run(tf.group(tf.global_variables_initializer(),
 					tf.local_variables_initializer()))
@@ -98,11 +78,7 @@ def main(args):
 		floorplan[room_boundary==1] = 9
 		floorplan[room_boundary==2] = 10
 		floorplan_rgb = ind2rgb(floorplan)
-		
-		#plt.savefig('result.jpg')
-		saveImage(room_type, 'room_type.png')
-		#saveImage2(room_boundary, 'room_boundary.png')
-		#saveImage(room_boundary, 'room_boundary.png', door=True)
+		saveImage(room_type, './teste/room_type.png')
 
 if __name__ == '__main__':
 	FLAGS, unparsed = parser.parse_known_args()
