@@ -35,28 +35,6 @@ class PredictionConfig(Config):
       GPU_COUNT = 1
       IMAGES_PER_GPU = 1
 
-def detect_doors(image, model):
-      points = []
-      #image = cv2.imread('image.jpg')
-      scaled_image = mold_image(image, cfg)
-      sample = expand_dims(scaled_image, 0)
-      yhat = model.detect(sample, verbose=0)[0]
-
-      for box in yhat['rois']:
-            points.append(list(box))
-      return points
-
-def detect_windows(image, model):
-      points = []
-      #image = cv2.imread('image.jpg')
-      scaled_image = mold_image(image, cfg)
-      sample = expand_dims(scaled_image, 0)
-      yhat = model.detect(sample, verbose=0)[0]
-      
-      for box in yhat['rois']:
-            points.append(list(box))
-      return points
-
 cfg = PredictionConfig()
 json_dict = {}
 
@@ -110,7 +88,7 @@ def main(args):
                   dimensions = process.extract_text(text_img)
                   dimensions = process.format_dimensions(dimensions)
 
-                  doors_bbs = detect_doors(_original_image, _dmodel)
+                  doors_bbs = process.detect_doors(_original_image, _dmodel)
                   doors_list = []
                   for bb in doors_bbs:
                         width, height = bb[3] - bb[1], bb[2] - bb[0]
@@ -122,7 +100,7 @@ def main(args):
                         if len(doors)>0:
                               doors_list.append(np.array(doors))
 
-                  windows_bbs = detect_windows(_original_image, _wmodel)
+                  windows_bbs = process.detect_windows(_original_image, _wmodel)
                   windows_list = []
                   for bb in windows_bbs:
                         width, height = bb[3] - bb[1], bb[2] - bb[0]

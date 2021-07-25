@@ -335,6 +335,28 @@ class Process:
     
     return angle, lenvector
 
+  def detect_doors(self, image, model):
+      points = []
+      #image = cv2.imread('image.jpg')
+      scaled_image = mold_image(image, cfg)
+      sample = expand_dims(scaled_image, 0)
+      yhat = model.detect(sample, verbose=0)[0]
+
+      for box in yhat['rois']:
+            points.append(list(box))
+      return points
+
+  def detect_windows(self, image, model):
+      points = []
+      #image = cv2.imread('image.jpg')
+      scaled_image = mold_image(image, cfg)
+      sample = expand_dims(scaled_image, 0)
+      yhat = model.detect(sample, verbose=0)[0]
+      
+      for box in yhat['rois']:
+            points.append(list(box))
+      return points
+
   def generate_entries(self, path,w,h):
       image = cv2.imread(path)
       image = cv2.resize(image, (w,h), interpolation = cv2.INTER_AREA)
