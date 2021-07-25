@@ -342,7 +342,7 @@ class Process:
     
     return angle, lenvector
 
-  def detect_doors(self, image, model):
+  def detect_doors(self, image, model, cfg):
       points = []
       #image = cv2.imread('image.jpg')
       scaled_image = mold_image(image, cfg)
@@ -353,7 +353,7 @@ class Process:
             points.append(list(box))
       return points
 
-  def detect_windows(self, image, model):
+  def detect_windows(self, image, model, cfg):
       points = []
       #image = cv2.imread('image.jpg')
       scaled_image = mold_image(image, cfg)

@@ -88,7 +88,7 @@ def main(args):
                   dimensions = process.extract_text(text_img)
                   dimensions = process.format_dimensions(dimensions)
 
-                  doors_bbs = process.detect_doors(_original_image, _dmodel)
+                  doors_bbs = process.detect_doors(_original_image, _dmodel, cfg)
                   doors_list = []
                   for bb in doors_bbs:
                         width, height = bb[3] - bb[1], bb[2] - bb[0]
@@ -100,7 +100,7 @@ def main(args):
                         if len(doors)>0:
                               doors_list.append(np.array(doors))
 
-                  windows_bbs = process.detect_windows(_original_image, _wmodel)
+                  windows_bbs = process.detect_windows(_original_image, _wmodel, cfg)
                   windows_list = []
                   for bb in windows_bbs:
                         width, height = bb[3] - bb[1], bb[2] - bb[0]
