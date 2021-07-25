@@ -8,6 +8,13 @@ from PIL import Image, ImageDraw
 import imutils
 import pytesseract
 from pytesseract import Output
+from mrcnn.utils import compute_ap
+from mrcnn.model import load_image_gt
+from mrcnn.model import mold_image
+from numpy import zeros
+from numpy import asarray
+from numpy import expand_dims
+from numpy import mean
 import json
 
 class Process:
