@@ -1,9 +1,4 @@
 # Deep Floor Plan Recognition using a Multi-task Network with Room-boundary-Guided Attention
-By Zhiliang ZENG, Xianzhi LI, Ying Kin Yu, and Chi-Wing Fu
-
-[2019/08/28: updated train/test/score code & dataset]
-
-[2019/07/29: updated demo code & pretrained model]
 
 ## Introduction
 
@@ -95,3 +90,9 @@ If you find our work useful in your research, please consider citing:
 	}
 
 ---
+
+## Contact
+If you want to contact me, you can reach me at email@maikpaixao.com.br
+
+## License
+This project uses the following license: MIT License.
