@@ -2,7 +2,9 @@
 
 ## Introduction
 
-This repository contains the code & annotation data for our ICCV 2019 paper: ['Deep Floor Plan Recognition Using a Multi-Task Network with Room-Boundary-Guided Attention'](https://arxiv.org/abs/1908.11025). In this paper, we present a new method for recognizing floor plan elements by exploring the spatial relationship between floor plan elements, model a hierarchy of floor plan elements, and design a multi-task network to learn to recognize room-boundary and room-type elements in floor plans.
+This repository contains the code & annotation data the enhanced model of: 
+
+```['Deep Floor Plan Recognition Using a Multi-Task Network with Room-Boundary-Guided Attention'](https://arxiv.org/abs/1908.11025).```
 
 ## Requirements
 
