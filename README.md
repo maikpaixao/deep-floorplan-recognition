@@ -1,10 +1,4 @@
-# Deep Floor Plan Recognition using a Multi-task Network with Room-boundary-Guided Attention
-
-## Introduction
-
-This repository contains the code & annotation data the enhanced model of: 
-
-```['Deep Floor Plan Recognition Using a Multi-Task Network with Room-Boundary-Guided Attention'](https://arxiv.org/abs/1908.11025).```
+# Floor Plan Recognition using a Multi-task Network
 
 ## Requirements
 
