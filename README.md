@@ -72,21 +72,6 @@ or
 python postprocess.py --result_dir=./[result_folder_path]
 ```
 
-## Citation
-
-If you find our work useful in your research, please consider citing:
-
----
-
-	@InProceedings{zlzeng2019deepfloor,
-		author = {Zhiliang ZENG, Xianzhi LI, Ying Kin Yu, and Chi-Wing Fu},
-		title = {Deep Floor Plan Recognition using a Multi-task Network with Room-boundary-Guided Attention},
-		booktitle = {IEEE International Conference on Computer Vision (ICCV)},
-		year = {2019}
-	}
-
----
-
 ## Contact
 If you want to contact me, you can reach me at email@maikpaixao.com.br
 
